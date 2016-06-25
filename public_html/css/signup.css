@@ -95,5 +95,11 @@ input[type="text"], [type="password"], [type="email"] {
 }
 .inputcenterarea{
   margin-top: 50px;
-
+}
+.errormessages{
+  color:#F44336;
+}
+.centerelement{
+  margin-left: 20%;
+  margin-right: 20%;
 }
