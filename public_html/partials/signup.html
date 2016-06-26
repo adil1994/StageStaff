@@ -7,66 +7,71 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/signup.css">
         <script src="js/bootstrap.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
     </head>
     <body ng-app="tinzaApp">
         <div ng-controller="signupController" id="signupContainer" class="container">
             <div id="character">
-                <img src="assets/character.png" alt="character" />
+                <img id="logoauthen" src="assets/character.png" alt="character" />
             </div>
-            <form role="form" name="frm">
-                <div id="step1">
+            <form role="form" name="frm" ng-init="step=1" >
+                <div id="step1" ng-form='step0form' ng-show=" step == 1 ">
                     <p class="title">You are one step away to become a Tinzer</p>
                     <div class="form-group">
-                        <button type="button" class="btn" id="facebook_authentification"><span class=""></span>Sign up with Facebook</button>
+                        <button  ng-click=" step = 2 "class="btn" id="facebook_authentification"><span class=""></span>Sign up with Facebook</button>
                     </div>
                     <div class="form-group">
-                        <button type="button" class="btn" id="google_authentification"><span class=""></span>Sign up with Google plus</button>
+                        <button  ng-click=" step = 2 " class="btn" id="google_authentification"><span class=""></span>Sign up with Google plus</button>
                     </div>
                     <div class="form-group">
-                        <button type="button" class="btn" id="email_authentification"><span class=""></span>Sign up with your email</button>
+                        <button  ng-click=" step = 2 " class="btn" id="email_authentification"><span class=""></span>Sign up with your email</button>
                     </div>
                     <div>
                         <p>Already have an account ? <a href="#" id="signin">Sign in</a></p>
                     </div>
                 </div>
                 <input type="text" id="currentStep" hidden="true" value="0">
-                <div id="step2" class="inputcenterarea">
+                <div id="step2" class="inputcenterarea" ng-show=" step == 2 ">
                     <p class="title">Hello !</p>
-                    <div class="form-group">
+                    <div class="form-group" ng-form='step1form'>
                         <label for="firstname">What's your name ?</label>
                         <input name="firstname" required ng-minlength="1" ng-model="firstname" type="text" class="form-control" id="firstname" placeholder="First name" required="required">
                         <div class="pressEnter">
                             <img src="assets/enter.png" />
                             <p>press enter</p>
                         </div>
+                        <button class="btn btn-primary tinzabtn" ng-disabled="!step1form.$valid" ng-click="step = 3">Next</button>
                     </div>
                 </div>
-                <div id="step3" class="inputcenterarea" >
+                <div id="step3" class="inputcenterarea" ng-show="step == 3" >
                     <p class="title">And</p>
-                    <div class="form-group">
+                    <div class="form-group" ng-form="step2form">
                         <label for="lastname">What's your last name ?</label>
                         <input ng-model="lastname" type="text" class="form-control" id="lastname" placeholder="Last name" required="required" disabled="disabled">
                         <div class="pressEnter">
                             <img src="assets/enter.png" />
                             <p>press enter</p>
                         </div>
+                        <button class="btn btn-primary tinzabtn" ng-disabled="!step2form.$valid" ng-click="step = 4">Next</button>
                     </div>
                 </div>
 
-                <div id="step4" class="inputcenterarea">
+                <div id="step4" class="inputcenterarea" ng-show="step == 4">
                     <p class="title">Hey {{firstname}}, nice to meet you !</p>
-                    <div class="form-group">
+                    <div class="form-group" ng-form="step3form">
                         <label for="email">Can you share your email with us ?</label>
                         <input ng-model="email" type="email" class="form-control" id="email" required="required" placeholder="email@domain.com">
                         <div class="pressEnter">
                             <img src="assets/enter.png" />
                             <p>press enter</p>
                         </div>
+                        <button class="btn btn-primary tinzabtn" ng-disabled="!step3form.$valid" ng-click="step = 5">Next</button>
                     </div>
                 </div>
-                <div id="step5" >
+                <div id="step5" ng-show="step == 5">
                     <p class="title">You are almost there</p>
-                    <div class="form-group">
+                    <div class="form-group" ng-form="step4form">
                         <label for="password">Secure your account with a password</label>
                         <input ng-model="password" type="password" class="form-control" required="required" id="password">
                         <div class="pressEnter">
@@ -74,10 +79,10 @@
                             <p>press enter</p>
                         </div>
                     </div>
-                    <button type="submit" class="btn" id="signmeup">Sign me up !</button>
+                    <button type="submit" class="btn " ng-disabled="!step4form.$valid" id="signmeup" ng-click="step = 6">Sign me up !</button>
                     <p id="terms">By signing up, you certify that you have read and accepted our <a href="#">Terms and conditions</a></p>
                 </div>
-                <div id="step6">
+                <div id="step6" ng-show="step == 6">
                     <p class="title">Thank you</p>
                     <p>We have sent you an email to <a href="#">{{email}}</a></p>
                     <p>Please click the link in the message to activate your account</p>
@@ -85,13 +90,13 @@
                     <p>Or</p>
                     <a id="change_email_link" href="#">Change your email</a>
                 </div>
-                <div id="resend_email">
+                <div id="resend_email" ng-show="false">
                     <p class="title">Message resent</p>
                     <p>Ok, we've sent the confirmation message to <a href="#">{{email}}</a></p>
                     <p>Make sure to check your junk or spam folder.</p>
                     <p>The sender is <a href="#">tinza@gmail.com</a></p>
                 </div>
-                <div id="change_email">
+                <div id="change_email" ng-show="false">
                     <p class="title">Change your email</p>
                     <div class="form-group">
                         <input type="email" class="form-control" id="new_email" placeholder="Your new email">
@@ -111,7 +116,6 @@
 
             </form>
         </div>
-        <script src="js/jquery.js"></script>
         <script type="text/javascript">
 
             function moveBack(){
@@ -144,6 +148,7 @@
                         e.preventDefault();
                     }
                 });
+                /*
                 $("#email_authentification").click(function () {
                     $("#step1").fadeOut(500);
                     $("#step2").fadeIn(500);
@@ -151,14 +156,13 @@
 
                     $("#firstname").keypress(function (e) {
                         if (e.which === 13) {
-                          if($("#frm").valid){
+
                             $("#step2").fadeOut(500);
                             $("#step3").fadeIn(500);
                             $("#btnback").fadeIn(500);
                             $("#lastname").removeAttr("disabled");
                             $("#lastname").focus();
                             $("#currentStep").val("2");
-                          }
                         }
                     });
                     $("#lastname").keypress(function (e) {
@@ -167,6 +171,7 @@
                             $("#btnback").fadeIn(500);
                             $("#step4").fadeIn(500);
                             $("#currentStep").val("3");
+
                         }
                     });
                     $("#email").keypress(function (e) {
@@ -176,6 +181,7 @@
                             $("#btnback").fadeIn(500);
                             $("#signmeup, #terms").fadeIn(500);
                             $("#currentStep").val("4");
+
                         }
                     });
                     $("#password").keypress(function (e) {
@@ -183,6 +189,7 @@
                             $("#step5").fadeOut(500);
                             $("#step6").fadeIn(500);
                             $("#btnback").fadeOut(500);
+
                         }
                     });
                     $("#resend_email_link").click(function () {
@@ -194,6 +201,7 @@
                         $("#change_email").fadeIn(500);
                     });
                 });
+                */
             });
         </script>
     </body>
