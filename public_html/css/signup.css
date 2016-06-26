@@ -92,10 +92,11 @@ input[type="text"], [type="password"], [type="email"] {
 
 
 .inputcenterarea{
-  margin-top: 50px;
+  margin-top: 10px;
 }
 .errormessages{
   color:#F44336;
+  font-weight: bold;
 }
 .centerelement{
   margin-left: 20%;
@@ -111,4 +112,15 @@ input[type="text"], [type="password"], [type="email"] {
   background: #FBD205;
   color: White;
   font-weight: bold;
+}
+.error{
+  font-weight : bold;
+  visibility: visible;
+  color:#F44336;
+}
+.errorcontainer{
+  height: 10px;
+}
+.errorhidden{
+  visibility: hidden;
 }
