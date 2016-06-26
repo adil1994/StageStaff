@@ -1,0 +1,116 @@
+<div id="signupContainer" class="container">
+    <div id="character">
+        <img id="logoauthen" src="assets/character.png" alt="character" />
+    </div>
+    <form role="form" name="frm" ng-init="step=1" >
+        <div id="step1" ng-form='step0form' ng-show=" step == 1 ">
+            <p class="title">You are one step away to become a Tinzer</p>
+            <div class="form-group">
+                <button  ng-click=" step = 2 "class="btn" id="facebook_authentification"><span class=""></span>Sign up with Facebook</button>
+            </div>
+            <div class="form-group">
+                <button  ng-click=" step = 2 " class="btn" id="google_authentification"><span class=""></span>Sign up with Google plus</button>
+            </div>
+            <div class="form-group">
+                <button  ng-click=" step = 2 " class="btn" id="email_authentification"><span class=""></span>Sign up with your email</button>
+            </div>
+            <div>
+                <p>Already have an account ? <a href="#" id="signin">Sign in</a></p>
+            </div>
+        </div>
+        <div id="step2" class="inputcenterarea" ng-show=" step == 2 ">
+          <div class="errorcontainer">
+            <p id="errormessage" class="error centerelement"  ng-class="( (!firstname.length || !step1form.$valid) && step1form.$dirty) ? 'error':'errorhidden' ">Firstname required </p>
+          </div>
+            <p class="title">Hello !</p>
+            <div class="form-group" ng-form='step1form'>
+                <label for="firstname">What's your name ?</label>
+                <input name="firstname" ng-enter="(!firstname.length || !step1form.$valid) ? (step = 2) : (step = 3) "  ng-minlength="1" ng-model="firstname" type="text" class="form-control" id="firstname"  placeholder="First name" >
+                <div class="pressEnter">
+                    <img src="assets/enter.png" />
+                    <p>press enter</p>
+                </div>
+                <button class="btn  tinzabtn" ng-disabled="!firstname.length || !step1form.$valid" ng-click="step = 3">Next</button>
+            </div>
+        </div>
+        <div id="step3" class="inputcenterarea" ng-show="step == 3" >
+          <div class="errorcontainer">
+            <p id="errormessage" class="error centerelement"  ng-class="( (!lastname.length || !step2form.$valid) && step2form.$dirty) ? 'error':'errorhidden' ">Lastname required </p>
+          </div>
+            <p class="title">And</p>
+            <div class="form-group" ng-form="step2form">
+                <label for="lastname">What's your last name ?</label>
+                <input name="lastname" ng-model="lastname" ng-enter="(!lastname.length || !step2form.$valid) ? (step = 3) : (step = 4) " type="text" class="form-control" id="lastname" placeholder="Last name"  >
+                <div class="pressEnter">
+                    <img src="assets/enter.png" />
+                    <p>press enter</p>
+                </div>
+                <button class="btn  tinzabtn" ng-disabled="!lastname.length || !step2form.$valid" ng-click="step = 4">Next</button>
+            </div>
+        </div>
+
+        <div id="step4" class="inputcenterarea" ng-show="step == 4">
+          <div class="errorcontainer">
+            <p id="errormessage" class="error centerelement"  ng-class="( (!email.length || !step3form.$valid) && step3form.$dirty) ? 'error':'errorhidden' "> Email not valid </p>
+          </div>
+            <p class="title">Hey {{firstname}}, nice to meet you !</p>
+            <div class="form-group" ng-form="step3form">
+                <label for="email">Can you share your email with us ?</label>
+                <input name="email" ng-model="email" ng-enter="(!email.length || !step3form.$valid) ? (step = 4) : (step = 5) " type="email" class="form-control" id="email" placeholder="email@domain.com">
+                <div class="pressEnter">
+                    <img src="assets/enter.png" />
+                    <p>press enter</p>
+                </div>
+                <button class="btn  tinzabtn" ng-disabled="!email.length ||!step3form.$valid" ng-click="step = 5">Next</button>
+            </div>
+        </div>
+        <div id="step5" ng-show="step == 5">
+          <div class="errorcontainer">
+            <ul id="strength" check-strength="password"></ul>
+          </div>
+            <p class="title">You are almost there </p>
+            <div class="form-group" ng-form="step4form">
+                <label for="password">Secure your account with a password</label>
+                <input name="password" ng-model="password" ng-enter="(!firstname.length || !step3form.$valid) ? (step = 5) : (step = 5) " type="password" class="form-control"  id="password">
+                <div class="pressEnter">
+                    <img src="assets/enter.png" />
+                    <p>press enter</p>
+                </div>
+            </div>
+            <button type="submit" class="btn " ng-disabled="  frm.password.$error.pattern || !password.length ||!step4form.$valid " id="signmeup" ng-click="step = 6">Sign me up !</button>
+            <p id="terms">By signing up, you certify that you have read and accepted our <a href="#">Terms and conditions</a></p>
+        </div>
+        <div id="step6" ng-show="step == 6">
+            <p class="title">Thank you</p>
+            <p>We have sent you an email to <a href="#">{{email}}</a></p>
+            <p>Please click the link in the message to activate your account</p>
+            <a id="resend_email_link" href="#">Resend the message</a>
+            <p>Or</p>
+            <a id="change_email_link" href="#">Change your email</a>
+        </div>
+        <div id="resend_email" ng-show="false">
+            <p class="title">Message resent</p>
+            <p>Ok, we've sent the confirmation message to <a href="#">{{email}}</a></p>
+            <p>Make sure to check your junk or spam folder.</p>
+            <p>The sender is <a href="#">tinza@gmail.com</a></p>
+        </div>
+        <div id="change_email" ng-show="false">
+            <p class="title">Change your email</p>
+            <div class="form-group" ng-form="step8form">
+                <input name="newemail" type="email" class="form-control" id="new_email" placeholder="Your new email">
+                <div class="pressEnter">
+                    <img src="assets/enter.png" />
+                    <p>press enter</p>
+                </div>
+            </div>
+            <button type="submit" ng-disabled="!newemail.length ||!step8form.$valid" class="btn tinzabtn" id="send">Send</button>
+            <p>Or</p>
+            <a href="#/singup">Go back</a>
+        </div>
+        <div id="btnback" ng-show="step > 2 && step <6" style="margin-right:10%;margin-left:10%;">
+          <a ng-click="step = step - 1" class="glyphicon glyphicon-circle-arrow-left" style="color:#FBD805; font-size:30px; margin-right:40%;margin-left:40%;" href=""></a>
+        </div>
+        <p id="werrormessage" class="errormessages centerelement" ng-show="frm.firstname.$dirty &&frm.firstname.$invalid"> Firstname invalid </p>
+
+    </form>
+</div>

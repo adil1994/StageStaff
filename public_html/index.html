@@ -3,43 +3,28 @@
     <head>
         <meta charset="UTF-8">
         <title>Tinza</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/signup.css">
         <link rel="stylesheet" href="css/main.css" type="text/css">
         <script src="js/jquery.js"></script>
         <script src="js/bootstrap.js"></script>
         <script src="js/angular.js"></script>
         <script src="js/ngDialog.js"></script>
+        <script src="js/angular-route.min.js"></script>
+        <link rel="stylesheet" href="css/style.css">
+        <script src="js/angular-animate.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
+
     </head>
     <body ng-app="tinzaApp">
         <div class="header" ng-controller="headerController">
-            <nav class="navbar navbar-custom" role="navigation">
-                <div class="container">
-                    <div class="collapse navbar-collapse" id="menu">
-                        <ul class="nav navbar-nav">
-                            <li class="dropdown">
-                                <button class="dropdown-toggle dropbutton" data-toggle="dropdown">
-                                    <span class="glyphicon glyphicon-menu-hamburger"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#about" >ABOUT</a></li>
-                                    <li><a href="#services" >SERVICES</a></li>
-                                    <li><a href="#portfolio">PORTFOLIO</a></li>
-                                    <li><a href="#pricing" >PRICING</a></li>
-                                    <li><a href="#contact" >CONTACT</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <ul id="logo" class="nav navbar-nav">
-                            <li><a ui-sref="home" >Tinza</a></li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a ng-click="openSignupDialog()" href="#">become a tinzer</a></li>
-                            <li><a ng-click="openSigninDialog()" href="#" >login</a></li>
-                        </ul>
-                    </div><!-- /.navbar-collapse -->
-                </div>
-            </nav>
+          <ng-include src="'partials/header.html'"></ng-include>
         </div>
+        <main ng-view></main>
+
+
         <script src="js/app.js"></script>
     </body>
-</html>                                		
+</html>

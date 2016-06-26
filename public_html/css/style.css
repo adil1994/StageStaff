@@ -1,0 +1,12 @@
+
+
+main.ng-enter{
+  transition:0.7s linear all;
+  transform: translateY(40px);
+  opacity:0;
+}
+
+main.ng-enter.ng-enter-active {
+    transform: translateY(0);
+  opacity:1;
+}
