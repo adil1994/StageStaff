@@ -36,11 +36,8 @@
                     <p class="title">Hello !</p>
                     <div class="form-group" ng-form='step1form'>
                         <label for="firstname">What's your name ?</label>
-                        <input name="firstname" required ng-minlength="1" ng-model="firstname" type="text" class="form-control" id="firstname" placeholder="First name" required="required">
-                        <div class="pressEnter">
-                            <img src="assets/enter.png" />
-                            <p>press enter</p>
-                        </div>
+                        <input name="firstname" required ng-minlength="1" ng-model="firstname" type="text" class="form-control" id="firstname" required="required" placeholder="First name" >
+
                         <button class="btn btn-primary tinzabtn" ng-disabled="!step1form.$valid" ng-click="step = 3">Next</button>
                     </div>
                 </div>
@@ -48,11 +45,8 @@
                     <p class="title">And</p>
                     <div class="form-group" ng-form="step2form">
                         <label for="lastname">What's your last name ?</label>
-                        <input ng-model="lastname" type="text" class="form-control" id="lastname" placeholder="Last name" required="required" disabled="disabled">
-                        <div class="pressEnter">
-                            <img src="assets/enter.png" />
-                            <p>press enter</p>
-                        </div>
+                        <input ng-model="lastname" type="text" class="form-control" id="lastname" placeholder="Last name" required="required" >
+
                         <button class="btn btn-primary tinzabtn" ng-disabled="!step2form.$valid" ng-click="step = 4">Next</button>
                     </div>
                 </div>
@@ -62,10 +56,7 @@
                     <div class="form-group" ng-form="step3form">
                         <label for="email">Can you share your email with us ?</label>
                         <input ng-model="email" type="email" class="form-control" id="email" required="required" placeholder="email@domain.com">
-                        <div class="pressEnter">
-                            <img src="assets/enter.png" />
-                            <p>press enter</p>
-                        </div>
+
                         <button class="btn btn-primary tinzabtn" ng-disabled="!step3form.$valid" ng-click="step = 5">Next</button>
                     </div>
                 </div>
@@ -74,10 +65,7 @@
                     <div class="form-group" ng-form="step4form">
                         <label for="password">Secure your account with a password</label>
                         <input ng-model="password" type="password" class="form-control" required="required" id="password">
-                        <div class="pressEnter">
-                            <img src="assets/enter.png" />
-                            <p>press enter</p>
-                        </div>
+
                     </div>
                     <button type="submit" class="btn " ng-disabled="!step4form.$valid" id="signmeup" ng-click="step = 6">Sign me up !</button>
                     <p id="terms">By signing up, you certify that you have read and accepted our <a href="#">Terms and conditions</a></p>
@@ -109,8 +97,8 @@
                     <p>Or</p>
                     <a href="#">Go back</a>
                 </div>
-                <div id="btnback" onclick="moveBack();" style="margin-right:10%;margin-left:10%;">
-                  <a class="glyphicon glyphicon-circle-arrow-left" style="color:#FBD805; font-size:30px; margin-right:40%;margin-left:40%;" href="#"></a>
+                <div id="btnback"  style="margin-right:10%;margin-left:10%;">
+                  <a ng-click="step = step - 1" class="glyphicon glyphicon-circle-arrow-left" style="color:#FBD805; font-size:30px; margin-right:40%;margin-left:40%;" href="#"></a>
                 </div>
                 <p id="errormessage" class="errormessages centerelement" ng-show="frm.firstname.$dirty &&frm.firstname.$invalid"> Firstname invalid </p>
 
