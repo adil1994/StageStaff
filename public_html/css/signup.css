@@ -106,3 +106,9 @@ input[type="text"], [type="password"], [type="email"] {
   border: none;
   margin-top: 9px;
 }
+.tinzabtn:hover
+{
+  background: #FBD205;
+  color: White;
+  font-weight: bold;
+}
