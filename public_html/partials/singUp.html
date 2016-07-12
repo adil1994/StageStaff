@@ -1,6 +1,6 @@
-<div id="signupContainer" class="container">
-    <div id="character">
-        <img id="logoauthen" src="assets/character.png" alt="character" />
+<div id="signupContainer" class="container" ng-controller="signupController">
+    <div id="character" >
+        <img id="logoauthen" src="assets/character.png" ng-class="shake" alt="character" />
     </div>
     <form role="form" name="frm" ng-init="step=1" >
         <div id="step1" ng-form='step0form' ng-show=" step == 1 ">
@@ -18,60 +18,67 @@
                 <p>Already have an account ? <a href="#" id="signin">Sign in</a></p>
             </div>
         </div>
-        <div id="step2" class="inputcenterarea" ng-show=" step == 2 ">
-          <div class="errorcontainer">
-            <p id="errormessage" class="error centerelement"  ng-class="( (!firstname.length || !step1form.$valid) && step1form.$dirty) ? 'error':'errorhidden' ">Firstname required </p>
-          </div>
+        <div id="step2" class="inputcenterarea" ng-show=" step == 2">
+
             <p class="title">Hello !</p>
             <div class="form-group" ng-form='step1form'>
                 <label for="firstname">What's your name ?</label>
-                <input name="firstname" ng-enter="(!firstname.length || !step1form.$valid) ? (step = 2) : (step = 3) "  ng-minlength="1" ng-model="firstname" type="text" class="form-control" id="firstname"  placeholder="First name" >
+                <input name="firstname" ng-enter="(!firstname.length || !step1form.$valid) ? dring() : next(3) "  ng-minlength="1" ng-model="firstname" type="text" class="form-control icon" id="firstname"  placeholder="First name" >
                 <div class="pressEnter">
                     <img src="assets/enter.png" />
                     <p>press enter</p>
                 </div>
+                <div >
+                  <p id="errormessage" class=" errorcontainer error centerelement"  ng-class="( ((!firstname.length || !step1form.$valid ) && step1form.$dirty) || (!step1form.$dirty && test == 1) ) ? 'error':'errorhidden' ">Firstname required </p>
+                </div>
             </div>
         </div>
-        <div id="step3" class="inputcenterarea" ng-show="step == 3" >
-          <div class="errorcontainer">
-            <p id="errormessage" class="error centerelement"  ng-class="( (!lastname.length || !step2form.$valid) && step2form.$dirty) ? 'error':'errorhidden' ">Lastname required </p>
-          </div>
+        <div id="step3" class="inputcenterarea" ng-show="step == 3 " >
+
             <p class="title">And</p>
             <div class="form-group" ng-form="step2form">
                 <label for="lastname">What's your last name ?</label>
-                <input name="lastname" ng-model="lastname" ng-enter="(!lastname.length || !step2form.$valid) ? (step = 3) : (step = 4) " type="text" class="form-control" id="lastname" placeholder="Last name"  >
+                <input name="lastname" ng-model="lastname" ng-enter="(!lastname.length || !step2form.$valid) ? dring() : next(4) " type="text" class=" icon form-control" id="lastname" placeholder="Last name"  >
                 <div class="pressEnter">
                     <img src="assets/enter.png" />
                     <p>press enter</p>
+                </div>
+                <div >
+                  <p id="errormessage" class="errorcontainer error centerelement"  ng-class="(( (!lastname.length || !step2form.$valid) && step2form.$dirty) || (!step2form.$dirty && test == 1) ) ? 'error':'errorhidden' ">Lastname required </p>
                 </div>
             </div>
         </div>
 
         <div id="step4" class="inputcenterarea" ng-show="step == 4">
-          <div class="errorcontainer">
-            <p id="errormessage" class="error centerelement"  ng-class="( (!email.length || !step3form.$valid) && step3form.$dirty) ? 'error':'errorhidden' "> Email not valid </p>
-          </div>
             <p class="title">Hey {{firstname}}, nice to meet you !</p>
             <div class="form-group" ng-form="step3form">
                 <label for="email">Can you share your email with us ?</label>
-                <input name="email" ng-model="email" ng-enter="(!email.length || !step3form.$valid) ? (step = 4) : (step = 5) " type="email" class="form-control" id="email" placeholder="email@domain.com">
+                <input name="email" ng-model="email" ng-enter="(!email.length || !step3form.$valid) ? dring() : next(5) " type="email" class=" iconemail form-control" id="email" placeholder="email@domain.com">
                 <div class="pressEnter">
                     <img src="assets/enter.png" />
                     <p>press enter</p>
                 </div>
+                <div >
+                  <p id="errormessage" class=" errorcontainer error centerelement"  ng-class="(( (!email.length || !step3form.$valid) && step3form.$dirty) || (!step3form.$dirty && test == 1) )? 'error':'errorhidden' "> Email not valid </p>
+                </div>
             </div>
         </div>
         <div id="step5" ng-show="step == 5">
-          <div class="errorcontainer">
-            <ul id="strength" check-strength="password"></ul>
-          </div>
-            <p class="title">You are almost there </p>
+
+            <p class="title">You are almost there  </p>
             <div class="form-group" ng-form="step4form">
                 <label for="password">Secure your account with a password</label>
-                <input name="password" ng-model="password" ng-enter="(!firstname.length || !step3form.$valid) ? (step = 5) : (step = 5) " type="password" class="form-control"  id="password">
+                <input name="password" ng-model="password" ng-enter="(!password.length || !step4form.$valid) ? dring() : next(6) " type="password" class="icon form-control"  id="password">
                 <div class="pressEnter">
                     <img src="assets/enter.png" />
                     <p>press enter</p>
+                </div>
+                <div style="visibility : hidden" check-strength="password" />
+                <div >
+                  <p id="errormessage1" class=" errorcontainer error centerelement" ng-show="(( (!password.length || !step4form.$valid) && step4form.$dirty) || (!step4form.$dirty && test == 1) )"  ng-class="(( (!password.length || !step4form.$valid) && step4form.$dirty) || (!step4form.$dirty && test == 1) )? 'error':'errorhidden' "> insert numbers characters  </p>
+                  <p id="errormessage2" class=" errorcontainer error centerelement" ng-show="paswordstrenght == 1 && password.length"  ng-class="(step4form.$dirty && paswordstrenght == 1 )? 'error':'errorhidden' "> Week </p>
+                  <p id="errormessage3" class=" mediumerrorcontainer error centerelement" ng-show="paswordstrenght == 2 && password.length" ng-class="(step4form.$dirty && paswordstrenght == 2 )? 'error':'errorhidden' "> Medium </p>
+                  <p id="errormessage4" class=" strongerrorcontainer error centerelement" ng-show="paswordstrenght == 4 && password.length" ng-class="(step4form.$dirty && paswordstrenght == 4 )? 'error':'errorhidden' "> Strong </p>
                 </div>
             </div>
             <p id="terms">By signing up, you certify that you have read and accepted our <a href="#">Terms and conditions</a></p>
@@ -82,7 +89,7 @@
             <p>Please click the link in the message to activate your account</p>
             <a id="resend_email_link" ng-click="step = 8"  href="">Resend the message</a>
             <p>Or</p>
-            <a id="change_email_link" ng-click="step = 7"  href="">Change your email</a>
+            <a id="change_email_link" ng-click="next(7)"  href="">Change your email</a>
         </div>
         <div id="resend_email" ng-show="step == 8">
             <p class="title">Message resent</p>
@@ -91,15 +98,16 @@
             <p>The sender is <a href="#">tinza@gmail.com</a></p>
         </div>
         <div id="change_email" ng-show="step == 7">
-          <div class="errorcontainer">
-            <p id="errormessage" class="error centerelement"  ng-class="( (!newemail.length || !step8form.$valid) && step8form.$dirty) ? 'error':'errorhidden' "> Email not valid </p>
-          </div>
+
             <p class="title">Change your email</p>
             <div class="form-group" ng-form="step8form">
-                <input name="newemail" ng-model="newemail" type="email" class="form-control" id="email" placeholder="email@domain.com">
+                <input name="newemail" ng-model="newemail" ng-enter="(!newemail.length || !step8form.$valid) ? dring() : next(9) " type="email" class=" iconemail form-control" id="email" placeholder="email@domain.com">
                 <div class="pressEnter">
                     <img src="assets/enter.png" />
                     <p>press enter</p>
+                </div>
+                <div >
+                  <p id="errormessage" class="errorcontainer error centerelement"  ng-class="(( (!newemail.length || !step8form.$valid) && step8form.$dirty) || (!step8form.$dirty && test == 1) ) ? 'error':'errorhidden' "> Email not valid </p>
                 </div>
             </div>
             <button type="submit" ng-disabled="!newemail.length ||!step8form.$valid" class="btn tinzabtn" id="send">Send</button>
@@ -109,11 +117,5 @@
           <a ng-click="step = step - 1" class="glyphicon glyphicon-circle-arrow-left" style="color:#FBD805; font-size:30px; margin-right:40%;margin-left:40%;" href=""></a>
         </div>
         <p id="werrormessage" class="errormessages centerelement" ng-show="frm.firstname.$dirty &&frm.firstname.$invalid"> Firstname invalid </p>
-
-        <script>
-        $(".nextbtn").click(function() {
-          $("#character").effect("shake");
-        });
-        </script>
     </form>
 </div>

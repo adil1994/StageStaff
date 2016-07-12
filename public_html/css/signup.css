@@ -1,3 +1,6 @@
+
+
+
 body {
     font: normal 14px verdana-regular;
     color: #b2b1b1;
@@ -13,8 +16,8 @@ body {
 }
 
 p {
-    margin: 20px 0;
-    padding: 0 40px;
+    margin: 10px 0;
+    padding: 0 20px;
 }
 
 #character img {
@@ -90,10 +93,6 @@ input[type="text"], [type="password"], [type="email"] {
     color: #369898;
 }
 
-
-.inputcenterarea{
-  margin-top: 10px;
-}
 .errormessages{
   color:#F44336;
   font-weight: bold;
@@ -116,25 +115,52 @@ input[type="text"], [type="password"], [type="email"] {
 .error{
   font-weight : bold;
   visibility: visible;
-  color:#F44336;
+  font-size: 11px;
+  color:#f36f4c;
+  font-family: verdana;
 }
 .errorcontainer{
-  height: 10px;
+  height: 17px;
+  border-radius: 9.25px;
+  border-style: solid;
+  margin-top: 22px;
+  border-width: 1px;
+  border-color: #f36f4c;
+  background: #feefeb;
 }
+
+
+
+
+.mediumerrorcontainer{
+  height: 17px;
+  border-radius: 9.25px;
+  border-style: solid;
+  margin-top: 22px;
+  border-width: 1px;
+  border-color: #f4da0a;
+  color: #f4da0a ;
+  background: #fff8c7 ;
+}
+
+.strongerrorcontainer{
+  height: 17px;
+  border-radius: 9.25px;
+  border-style: solid;
+  margin-top: 22px;
+  border-width: 1px;
+  border-color: #5b893d ;
+  color: #5b893d  ;
+  background: #e4f1da  ;
+}
+
 .errorhidden{
   visibility: hidden;
 }
 
 
 
-ul#strength {
-    display:inline;
-    list-style:none;
-    margin:0;
-    margin-left:15px;
-    padding:0;
-    vertical-align:2px;
-}
+
 .point:last {
     margin:0 !important;
 }
@@ -146,6 +172,48 @@ ul#strength {
     margin-right:1px;
     width:20px;
 }
-ul#strength {
-    display:none;
+
+
+.inputcenterarea {
+  transition: 0.5s linear all ;
+  opacity: 1;
+
+}
+
+.inputcenterarea.ng-hide-add{
+
+    transition: 0.5s linear all ;
+    opacity: 0.5;
+    transform: translateY(10px);
+
+}
+
+.inputcenterarea.ng-hide-remove{
+
+    transition: 0.5s linear all ;
+    opacity: 0.5;
+    transform: translateY(10px);
+
+}
+
+.inputcenterarea.ng-hide {
+  transition: 0.5s linear all ;
+  line-height: 0;
+  transform: translateY(10px);
+  opacity: 0;
+}
+
+
+.icon{
+background-image:url(../assets/placeholder.png);
+background-repeat: no-repeat;
+background-position: 7px 9px;
+text-indent:25px;
+}
+
+.iconemail{
+background-image:url(../assets/envelope.png);
+background-repeat: no-repeat;
+background-position: 5px 9px;
+text-indent:25px;
 }

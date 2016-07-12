@@ -58,11 +58,32 @@ tinzaApp.controller('headerController', function ($scope, ngDialog, $rootScope) 
     };
 
 });
-tinzaApp.controller('signupController', function ($scope, ngDialog, $rootScope) {
+tinzaApp.controller('signupController', function ($scope, ngDialog,$timeout, $rootScope) {
     $rootScope.x = 0;
+    $scope.test = 0;
+    $scope.level=0;
     $scope.password='';
     $scope.paswordstrenght=0;
     $scope.re = "^(?=.{6,20}$)(?=.*\d)(?=.*[a-zA-Z]).*$";
+    $scope.dring = function(){
+      $scope.test=1;
+      $("#character").effect("shake");
+
+    };
+    $scope.next = function(steporder){
+
+      if(steporder-1 == 5){
+        if($scope.paswordstrenght<=1){
+          $scope.test=1;
+          $("#character").effect("shake");
+          return;
+        }
+      }
+
+      $scope.step = steporder;
+      $scope.test=0;
+    };
+
 });
 
 tinzaApp.directive('ngEnter', function () {
@@ -76,6 +97,7 @@ tinzaApp.directive('ngEnter', function () {
             }
         });
     };
+
 });
 
 
@@ -133,17 +155,9 @@ tinzaApp.directive('checkStrength', function () {
             };
 
             scope.$watch(iAttrs.checkStrength, function () {
-                if (scope.password === '') {
-                    iElement.css({ "display": "none"  });
-                } else {
                     var c = strength.getColor(strength.mesureStrength(scope.password));
-                    iElement.css({ "display": "inline" });
                     scope.paswordstrenght=c.idx;
-                    iElement.children('li')
-                        .css({ "background": "#DDD" })
-                        .slice(0, c.idx)
-                        .css({ "background": c.col });
-                }
+                    scope.test=0;
             });
 
         },
