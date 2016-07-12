@@ -217,3 +217,8 @@ background-repeat: no-repeat;
 background-position: 5px 9px;
 text-indent:25px;
 }
+
+.tobeshown{
+  transition: 0.5s linear all ;
+  opacity: 0.5;
+}

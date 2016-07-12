@@ -33,12 +33,12 @@
                 </div>
             </div>
         </div>
-        <div id="step3" class="inputcenterarea" ng-show="step == 3 " >
+        <div id="step3"  ng-show="step == 3 || step==2" ng-class=" step == 2 ? 'tobeshown':'inputcenterarea'"  >
 
             <p class="title">And</p>
             <div class="form-group" ng-form="step2form">
                 <label for="lastname">What's your last name ?</label>
-                <input name="lastname" ng-model="lastname" ng-enter="(!lastname.length || !step2form.$valid) ? dring() : next(4) " type="text" class=" icon form-control" id="lastname" placeholder="Last name"  >
+                <input name="lastname" ng-disabled="step == 2" ng-model="lastname" ng-enter="(!lastname.length || !step2form.$valid) ? dring() : next(4) " type="text" class=" icon form-control" id="lastname" placeholder="Last name"  >
                 <div class="pressEnter">
                     <img src="assets/enter.png" />
                     <p>press enter</p>
@@ -49,7 +49,7 @@
             </div>
         </div>
 
-        <div id="step4" class="inputcenterarea" ng-show="step == 4">
+        <div id="step4" class="inputcenterarea" ng-show="step == 4 || step==3" ng-class=" step == 3 ? 'tobeshown':'inputcenterarea'">
             <p class="title">Hey {{firstname}}, nice to meet you !</p>
             <div class="form-group" ng-form="step3form">
                 <label for="email">Can you share your email with us ?</label>
@@ -63,7 +63,7 @@
                 </div>
             </div>
         </div>
-        <div id="step5" ng-show="step == 5">
+        <div id="step5" ng-show="step == 5 || step==4" ng-class=" step == 4 ? 'tobeshown':'inputcenterarea'">
 
             <p class="title">You are almost there  </p>
             <div class="form-group" ng-form="step4form">
@@ -83,7 +83,7 @@
             </div>
             <p id="terms">By signing up, you certify that you have read and accepted our <a href="#">Terms and conditions</a></p>
         </div>
-        <div id="step6" ng-show="step == 6">
+        <div id="step6" ng-show="step == 6 ">
             <p class="title">Thank you</p>
             <p>We have sent you an email to <a href="#">{{email}}</a></p>
             <p>Please click the link in the message to activate your account</p>
