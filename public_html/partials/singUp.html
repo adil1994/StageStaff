@@ -29,7 +29,7 @@
                     <p>press enter</p>
                 </div>
                 <div >
-                  <p id="errormessage" class=" errorcontainer error centerelement"  ng-class="( ((!firstname.length || !step1form.$valid ) && step1form.$dirty) || (!step1form.$dirty && test == 1) ) ? 'error':'errorhidden' ">Firstname required </p>
+                  <p id="errormessage" class=" errorcontainer error centerelement"  ng-class="( ((!firstname.length || !step1form.$valid ) && step1form.$dirty) || (!step1form.$dirty && test == 1) )&& step==2 ? 'error':'errorhidden' ">Firstname required </p>
                 </div>
             </div>
         </div>
@@ -44,7 +44,7 @@
                     <p>press enter</p>
                 </div>
                 <div >
-                  <p id="errormessage" class="errorcontainer error centerelement"  ng-class="(( (!lastname.length || !step2form.$valid) && step2form.$dirty) || (!step2form.$dirty && test == 1) ) ? 'error':'errorhidden' ">Lastname required </p>
+                  <p id="errormessage" class="errorcontainer error centerelement"  ng-class="(( (!lastname.length || !step2form.$valid) && step2form.$dirty) || (!step2form.$dirty && test == 1) )&& step==3 ? 'error':'errorhidden' ">Lastname required </p>
                 </div>
             </div>
         </div>
@@ -59,7 +59,7 @@
                     <p>press enter</p>
                 </div>
                 <div >
-                  <p id="errormessage" class=" errorcontainer error centerelement"  ng-class="(( (!email.length || !step3form.$valid) && step3form.$dirty) || (!step3form.$dirty && test == 1) )? 'error':'errorhidden' "> Email not valid </p>
+                  <p id="errormessage" class=" errorcontainer error centerelement"  ng-class="(( (!email.length || !step3form.$valid) && step3form.$dirty) || (!step3form.$dirty && test == 1) ) && step==4 ? 'error':'errorhidden' "> Email not valid </p>
                 </div>
             </div>
         </div>
@@ -75,7 +75,7 @@
                 </div>
                 <div style="visibility : hidden" check-strength="password" />
                 <div >
-                  <p id="errormessage1" class=" errorcontainer error centerelement" ng-show="(( (!password.length || !step4form.$valid) && step4form.$dirty) || (!step4form.$dirty && test == 1) )"  ng-class="(( (!password.length || !step4form.$valid) && step4form.$dirty) || (!step4form.$dirty && test == 1) )? 'error':'errorhidden' "> insert numbers characters  </p>
+                  <p id="errormessage1" class=" errorcontainer error centerelement" ng-show="(( (!password.length || !step4form.$valid) && step4form.$dirty) || (!step4form.$dirty && test == 1) )"  ng-class="(( (!password.length || !step4form.$valid) && step4form.$dirty) || (!step4form.$dirty && test == 1) ) && step == 5? 'error':'errorhidden' "> insert numbers characters  </p>
                   <p id="errormessage2" class=" errorcontainer error centerelement" ng-show="paswordstrenght == 1 && password.length"  ng-class="(step4form.$dirty && paswordstrenght == 1 )? 'error':'errorhidden' "> Week </p>
                   <p id="errormessage3" class=" mediumerrorcontainer error centerelement" ng-show="paswordstrenght == 2 && password.length" ng-class="(step4form.$dirty && paswordstrenght == 2 )? 'error':'errorhidden' "> Medium </p>
                   <p id="errormessage4" class=" strongerrorcontainer error centerelement" ng-show="paswordstrenght == 4 && password.length" ng-class="(step4form.$dirty && paswordstrenght == 4 )? 'error':'errorhidden' "> Strong </p>
