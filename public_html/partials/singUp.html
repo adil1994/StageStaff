@@ -30,7 +30,6 @@
                     <img src="assets/enter.png" />
                     <p>press enter</p>
                 </div>
-                <button  class="btn nextbtn tinzabtn" ng-disabled="!firstname.length || !step1form.$valid" ng-click="step = 3">Next</button>
             </div>
         </div>
         <div id="step3" class="inputcenterarea" ng-show="step == 3" >
@@ -45,7 +44,6 @@
                     <img src="assets/enter.png" />
                     <p>press enter</p>
                 </div>
-                <button  class="btn nextbtn tinzabtn" ng-disabled="!lastname.length || !step2form.$valid" ng-click="step = 4">Next</button>
             </div>
         </div>
 
@@ -61,7 +59,6 @@
                     <img src="assets/enter.png" />
                     <p>press enter</p>
                 </div>
-                <button  class="btn nextbtn tinzabtn" ng-disabled="!email.length ||!step3form.$valid" ng-click="step = 5">Next</button>
             </div>
         </div>
         <div id="step5" ng-show="step == 5">
@@ -77,7 +74,6 @@
                     <p>press enter</p>
                 </div>
             </div>
-            <button type="submit" class="btn nextbtn" ng-disabled="  frm.password.$error.pattern || !password.length ||!step4form.$valid " id="signmeup" ng-click="step = 6">Sign me up !</button>
             <p id="terms">By signing up, you certify that you have read and accepted our <a href="#">Terms and conditions</a></p>
         </div>
         <div id="step6" ng-show="step == 6">
